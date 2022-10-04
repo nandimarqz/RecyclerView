@@ -13,7 +13,7 @@ class PersonAdapter(val people : List<Person>, val listener: (Person) ->Unit): R
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
+        //Guardamos la vista inflada en una variable y la devolvemos
         val view = LayoutInflater.from(parent.context).inflate(R.layout.person_view, parent, false)
         return ViewHolder(view)
 
@@ -21,10 +21,14 @@ class PersonAdapter(val people : List<Person>, val listener: (Person) ->Unit): R
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
+        //llamamos a la funcion bind creada abajo con la persona
         holder.bind(people[position])
 
+        //Guardamos a la persona en una variable
         val person = people[position]
 
+        //Ponemos un escuchador de eventos para cuando se haga un click
+        // en contacto llamamos a la funcion que se pasa por parametro a esta misma clase
         holder.itemView.setOnClickListener {
             listener(person)
 
@@ -33,14 +37,15 @@ class PersonAdapter(val people : List<Person>, val listener: (Person) ->Unit): R
 
     }
 
+    //Devuelve el tamaño de la lista pasada por parametro
     override fun getItemCount(): Int = people.size
 
-
-
     class ViewHolder(view: View): RecyclerView.ViewHolder(view){
-
+        //Obtenemos los items de la vista en la variable
         private val binding = PersonViewBinding.bind(view)
 
+        //Esta funcion cambia todos los valores de texto de las
+        // etiquetas recogidas y cambia tmb la imagen con Glide
         fun bind(person : Person){
 
             binding.email.text = person.email
