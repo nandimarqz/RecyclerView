@@ -1,5 +1,6 @@
 package com.recyclerview
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.recyclerview.databinding.PersonViewBinding
 
-class PersonAdapter(val people : List<Person>): RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
+class PersonAdapter(val people : List<Person>, val listener: (Person) ->Unit): RecyclerView.Adapter<PersonAdapter.ViewHolder>() {
 
 
 
@@ -21,6 +22,14 @@ class PersonAdapter(val people : List<Person>): RecyclerView.Adapter<PersonAdapt
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         holder.bind(people[position])
+
+        val person = people[position]
+
+        holder.itemView.setOnClickListener {
+            listener(person)
+
+        }
+
 
     }
 

@@ -12,9 +12,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="android:textViewStyle">?attr/colorPrimary</item>
     </style>
 
-    <style name="LocalEditTextStyle" parent="Widget.AppCompat.EditText">
-        <item name="android:background">@color/white</item>
-    </style>
 </resources>
