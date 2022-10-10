@@ -1,5 +1,7 @@
 package com.recyclerview
 
+import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.bumptech.glide.Glide
@@ -28,7 +30,24 @@ class DetailActivity : AppCompatActivity() {
         if(person != null) {
             binding.textView.text = person.nombre
             Glide.with(binding.imageView).load(person.imagenUrl).into(binding.imageView)
+
+            binding.button.setOnClickListener {
+
+                val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+person.tlf))
+
+                startActivity(intent)
+            }
+
+            binding.button2.setOnClickListener {
+
+                val intent = Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:"+person.email))
+
+                startActivity(intent)
+
+            }
         }
+
+
 
 
     }
